@@ -347,36 +347,40 @@ void allocateBranch(PriorityQueue *pq, Student *st, branch *comp, branch *elec, 
     }
 }
 
-void displayPriorityQueue(PriorityQueue *pq)
-{
-    printf("Priority Queue Contents:\n");
-    for (int i = 0; i < pq->size; i++)
-    {
-        printf("Name: %s, Priority: %.2f\n", pq->students[i]->name, pq->students[i]->CET_percentile);
-    }
-}
+void display_branch_student(branch *br) {
+    printf("+----+----------------------+------------+----------+\n");
+    printf("| #  | Name                 | Percentile | Category |\n");
+    printf("+----+----------------------+------------+----------+\n");
 
-void display_branch_student(branch *br)
-{
-    for (int i = 0; i < br->size; i++)
-    {
+    for (int i = 0; i < br->size; i++) {
         Student *current = br->students[i];
-        printf("    %d. Name: %s     Percentile: %0.2f ", i + 1, current->name, current->CET_percentile);
-        if (current->Category == 1)
-            printf("    Category: Open\n");
-        if (current->Category == 2)
-            printf("    Category: OBC\n");
-        if (current->Category == 3)
-            printf("    Category: NT\n");
-        if (current->Category == 4)
-            printf("    Category: SC\n");
-        if (current->Category == 5)
-            printf("    Category: ST\n");
+        const char* category;
+
+        switch (current->Category) {
+            case 1:
+                category = "Open";
+                break;
+            case 2:
+                category = "OBC";
+                break;
+            case 3:
+                category = "NT";
+                break;
+            case 4:
+                category = "SC";
+                break;
+            case 5:
+                category = "ST";
+                break;
+            default:
+                category = "Unknown";
+        }
+
+        printf("| %-2d | %-20s | %10.2f | %-8s |\n", i + 1, current->name, current->CET_percentile, category);
     }
 
-    printf("\n\n");
+    printf("+----+----------------------+------------+----------+\n\n");
 }
-
 
 void Allocation(PriorityQueue *pq)
 {
