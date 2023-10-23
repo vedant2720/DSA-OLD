@@ -142,15 +142,7 @@ Student *removeStudent(PriorityQueue *pq)
     return highestPriorityStudent;
 }
 
-// Function to display the contents of the priority queue
-void displayPriorityQueue(PriorityQueue *pq)
-{
-    printf("Priority Queue Contents:\n");
-    for (int i = 0; i < pq->size; i++)
-    {
-        printf("Name: %s, Priority: %.2f\n", pq->students[i]->name, pq->students[i]->CET_percentile);
-    }
-}
+
 
 void admission_form(PriorityQueue *pq)
 {
@@ -362,6 +354,27 @@ void displayPriorityQueue(PriorityQueue *pq)
     {
         printf("Name: %s, Priority: %.2f\n", pq->students[i]->name, pq->students[i]->CET_percentile);
     }
+}
+
+void display_branch_student(branch *br)
+{
+    for (int i = 0; i < br->size; i++)
+    {
+        Student *current = br->students[i];
+        printf("    %d. Name: %s     Percentile: %0.2f ", i + 1, current->name, current->CET_percentile);
+        if (current->Category == 1)
+            printf("    Category: Open\n");
+        if (current->Category == 2)
+            printf("    Category: OBC\n");
+        if (current->Category == 3)
+            printf("    Category: NT\n");
+        if (current->Category == 4)
+            printf("    Category: SC\n");
+        if (current->Category == 5)
+            printf("    Category: ST\n");
+    }
+
+    printf("\n\n");
 }
 
 
